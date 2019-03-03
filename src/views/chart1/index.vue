@@ -1,77 +1,23 @@
 <template>
-  <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      element-loading-text="Loading"
-      border
-      fit
-      highlight-current-row>
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{ scope.row.title }}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.pageviews }}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span>{{ scope.row.display_time }}</span>
-        </template>
-      </el-table-column>
-    </el-table>
-  </div>
+  <histogram :data="chartData"/>
 </template>
 
 <script>
-import { getList } from '@/api/table'
-
+import histogram from 'v-charts/lib/histogram.common'
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
+  components: { histogram },
   data() {
     return {
-      list: null,
-      listLoading: true
-    }
-  },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+      chartData: {
+        columns: ['机房', '系统1', '系统12', '系统2', '系统3'],
+        rows: [
+          { '机房': '机房1', '系统1': 1393, '系统12': 1093, '系统2': 1093, '系统3': 2232 },
+          { '机房': '机房2', '系统1': 3530, '系统12': 1230, '系统2': 3230, '系统3': 1126 },
+          { '机房': '机房3', '系统1': 2923, '系统12': 1623, '系统2': 2623, '系统3': 1176 },
+          { '机房': '机房4', '系统1': 1723, '系统12': 1423, '系统2': 1423, '系统3': 1149 },
+          { '机房': '机房5', '系统1': 3792, '系统12': 1492, '系统2': 3492, '系统3': 10323 },
+          { '机房': '机房6', '系统1': 4593, '系统12': 1293, '系统2': 4293, '系统3': 978 }
+        ] }
     }
   }
 }

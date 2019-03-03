@@ -25,6 +25,10 @@ import '@/icons' // icon
  */
 import '../mock' // simulation data
 
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
