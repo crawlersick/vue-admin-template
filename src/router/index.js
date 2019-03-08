@@ -62,6 +62,12 @@ export const constantRouterMap = [
         name: 'chart3',
         component: () => import('@/views/chart3/index'),
         meta: { title: 'chart3-pie', icon: 'table' }
+      },
+      {
+        path: 'chart4',
+        name: 'chart4',
+        component: () => import('@/views/chart4/index'),
+        meta: { title: 'chart4-comptable', icon: 'table' }
       }
     ]
   },
