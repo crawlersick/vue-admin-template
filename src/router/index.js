@@ -175,11 +175,19 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path: '/tofack4a',
+    afterEnter(to, from, next) {
+      // Put the full page url including the protocol http(s) below
+      window.location = 'http://localhost:5000/fake4a?service=http://localhost:9528'
+    }
+  },
   { path: '*', redirect: '/404', hidden: true }
+
 ]
 
 export default new Router({
+  mode: 'history',
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap

@@ -11,25 +11,29 @@ NProgress.configure({ showSpinner: false })// NProgress configuration
 // const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
+
   console.log('--------1-----------')
-  console.log('--' + to.query.a)
-  if (!to.query.a) {
-    console.log('--------cookies remove-----------')
-    Cookies.remove('ticket')
-    next()
-    return
-  }
+  console.log(to.query.ticket)
   console.log('--------2-----------')
   console.log(from.query)
   console.log('--------3-----------')
-  console.log(next)
+  // Cookies.remove('ticket')
+
   if (Cookies.get('ticket')) {
     console.log('--------cookies found-----------')
     console.log(Cookies.getJSON())
   } else {
-    console.log('--------cookies not found setting-----------' + to.query.a)
-    Cookies.set('ticket', to.query.a)
+    console.log('--------cookies not found setting-----------' + to.query.ticket)
+    // Cookies.set('ticket', to.query.a)
+    if (!to.query.ticket) {
+      console.log('redirect')
+      window.location = 'http://localhost:5000/fake4a?service=http://localhost:9528'
+      return
+    } else {
+      Cookies.set('ticket', to.query.ticket)
+    }
   }
+
   next()
 })
 
