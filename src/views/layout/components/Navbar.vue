@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar11">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
@@ -25,6 +25,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import Cookies from 'js-cookie'
 
 export default {
   components: {
@@ -42,6 +43,7 @@ export default {
       this.$store.dispatch('ToggleSideBar')
     },
     logout() {
+      Cookies.remove('ticket')
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
@@ -51,7 +53,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.navbar {
+.navbar11 {
   height: 50px;
   line-height: 50px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.12), 0 0 3px 0 rgba(0,0,0,.04);
