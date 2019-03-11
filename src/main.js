@@ -25,11 +25,9 @@ import '@/permission_def'
  * If you remove `../mock` it will automatically request easy-mock data.
  */
 import '../mock' // simulation data
-
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false

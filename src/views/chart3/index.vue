@@ -7,7 +7,6 @@
             id="table-transition-example"
             :items="items"
             :fields="fields"
-            :tbody-transition-props="transProps"
             striped
             small
             primary-key="a"

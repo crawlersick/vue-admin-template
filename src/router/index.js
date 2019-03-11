@@ -174,15 +174,8 @@ export const constantRouterMap = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  },
-  {
-    path: '/tofack4a',
-    afterEnter(to, from, next) {
-      // Put the full page url including the protocol http(s) below
-      window.location = 'http://localhost:5000/fake4a?service=http://localhost:9528'
-    }
-  },
-  { path: '*', redirect: '/404', hidden: true }
+  } // ,
+  // { path: '*', redirect: '/404', hidden: true }
 
 ]
 
@@ -192,3 +185,4 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
+

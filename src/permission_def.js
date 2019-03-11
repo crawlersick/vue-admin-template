@@ -5,7 +5,7 @@ import 'nprogress/nprogress.css' // progress bar style
 // import { Message } from 'element-ui'
 // import { getToken } from '@/utils/auth' // getToken from cookie
 import Cookies from 'js-cookie'
-
+import { constantRouterMap } from '@/router'
 NProgress.configure({ showSpinner: false })// NProgress configuration
 
 // const whiteList = ['/login'] // 不重定向白名单
@@ -21,6 +21,9 @@ router.beforeEach((to, from, next) => {
 
   if (Cookies.get('ticket')) {
     console.log('--------cookies found-----------')
+    // hiden the option!!!!!!!!!!!
+    constantRouterMap[7]['hidden'] = true
+    console.log(constantRouterMap[7])
     console.log(Cookies.getJSON())
   } else {
     console.log('--------cookies not found setting-----------' + to.query.ticket)
