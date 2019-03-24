@@ -40,6 +40,10 @@ const user = {
       })
     },
 
+    setname({ commit }, uname) {
+      commit('SET_NAME', uname)
+    },
+
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {

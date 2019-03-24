@@ -1,5 +1,5 @@
 import router from './router'
-// import store from './store'
+import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 // import { Message } from 'element-ui'
@@ -18,7 +18,7 @@ router.beforeEach((to, from, next) => {
   console.log(from.query)
   console.log('--------3-----------')
   // Cookies.remove('ticket')
-
+  store.dispatch('setname', '1a1a1a')
   if (Cookies.get('ticket')) {
     console.log('--------cookies found-----------')
     // hiden the option!!!!!!!!!!!
@@ -30,7 +30,8 @@ router.beforeEach((to, from, next) => {
     // Cookies.set('ticket', to.query.a)
     if (!to.query.ticket) {
       console.log('redirect')
-      window.location = 'http://localhost:5000/fake4a?service=http://localhost:9528'
+      // window.location = 'http://localhost:5000/fake4a?service=http://localhost:9528'
+      window.location.href = window.location.href + '?ticket=112233'
       return
     } else {
       Cookies.set('ticket', to.query.ticket)

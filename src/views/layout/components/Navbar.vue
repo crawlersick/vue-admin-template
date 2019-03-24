@@ -4,7 +4,10 @@
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <img src="@/assets/404_images/404.png" class="user-avatar">
+        <div class="user-avatar">
+          <h4>{{ nnn }}</h4>
+          <!-- <img src="@/assets/404_images/404.png" > -->
+        </div>
         <i class="el-icon-caret-bottom"/>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -32,11 +35,20 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data() {
+    return {
+      nnn: '1'
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
       'avatar'
     ])
+  },
+  created() {
+    console.log(this.$store.getters.name)
+    this.nnn = this.$store.getters.name
   },
   methods: {
     toggleSideBar() {
@@ -80,7 +92,7 @@ export default {
       position: relative;
       line-height: initial;
       .user-avatar {
-        width: 40px;
+        width: 100%;
         height: 40px;
         border-radius: 10px;
       }
