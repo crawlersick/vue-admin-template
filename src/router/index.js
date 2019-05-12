@@ -180,8 +180,9 @@ export const constantRouterMap = [
 ]
 
 export default new Router({
-  base: '/app/',
-  mode: 'history',
+  // base: '/app/',
+  base: '/',
+  // mode: 'history',
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
