@@ -28,6 +28,9 @@ import '../mock' // simulation data
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import cytoscape from 'cytoscape'
+Vue.prototype.$cytoscape = cytoscape
+
 Vue.use(BootstrapVue)
 
 Vue.use(ElementUI, { locale })

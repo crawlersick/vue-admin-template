@@ -16,6 +16,8 @@
   "dependencies": {
     "axios": "0.18.0",
     "bootstrap-vue": "^2.0.0-rc.13",
+    "cytoscape": "^3.8.0",
+    "cytoscape-qtip": "^2.7.1",
     "echarts": "*",
     "element-ui": "2.4.6",
     "js-cookie": "2.2.0",
