@@ -31,10 +31,12 @@ router.beforeEach((to, from, next) => {
     if (!to.query.ticket) {
       console.log('redirect')
       // window.location = 'http://localhost:5000/fake4a?service=http://localhost:9528'
-      window.location.href = window.location.href + '?ticket=112233'
-      return
+      // window.location.href = window.location.href + 'dashboard?ticket=112233'
+      // return
     } else {
       Cookies.set('ticket', to.query.ticket)
+      window.location.href = window.location.href
+      return
     }
   }
 
