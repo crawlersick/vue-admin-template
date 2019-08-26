@@ -39,6 +39,23 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/data_visible',
+    component: Layout,
+    redirect: '/data_visible/calender_data',
+    name: 'data_visible',
+    meta: { title: 'data_visible', icon: 'example' },
+    children: [
+      {
+        path: 'calender_data',
+        name: 'calender_data',
+        component: () => import('@/views/data_visible/calender_data'),
+        meta: { title: 'calender_data', icon: 'table' }
+      }
+
+    ]
+  },
+
+  {
     path: '/mytesting',
     component: Layout,
     redirect: '/mytesting/chart1',
@@ -187,4 +204,3 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
-
