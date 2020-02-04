@@ -1,4 +1,4 @@
-npm run build
+npm run build:prod
 cd dist
 git init
 git add -A

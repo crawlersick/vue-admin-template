@@ -18,12 +18,12 @@ router.beforeEach((to, from, next) => {
   console.log(from.query)
   console.log('--------3-----------')
   // Cookies.remove('ticket')
-  store.dispatch('setname', '1a1a1a')
+  // store.dispatch('setname', '1a1a1a')
   if (Cookies.get('ticket')) {
     console.log('--------cookies found-----------')
     // hiden the option!!!!!!!!!!!
-    constantRouterMap[7]['hidden'] = true
-    console.log(constantRouterMap[7])
+   // constantRouterMap[7]['hidden'] = true
+    // console.log(constantRouterMap[7])
     console.log(Cookies.getJSON())
   } else {
     console.log('--------cookies not found setting-----------' + to.query.ticket)

@@ -102,12 +102,6 @@ export const constantRoutes = [
         name: 'chart4',
         component: () => import('@/views/chart4/index'),
         meta: { title: 'chart4-comptable', icon: 'table' }
-      },
-      {
-        path: 'chart5',
-        name: 'chart5',
-        component: () => import('@/views/chart5/index'),
-        meta: { title: 'cytoscape', icon: 'table' }
       }
     ]
   },
@@ -214,7 +208,7 @@ export const constantRoutes = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  } // ,
+  },
   // { path: '*', redirect: '/404', hidden: true }
 
   // 404 page must be placed at the end !!!

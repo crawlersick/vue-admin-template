@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-module.exports = {
-baseUrl: '/app/',
-publicPath: '/app/'
-=======
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
@@ -32,7 +27,8 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  // lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: false,
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -130,5 +126,4 @@ module.exports = {
         }
       )
   }
->>>>>>> 95c7bf5d10d5071136ed34cdd8ba669a281de523
 }

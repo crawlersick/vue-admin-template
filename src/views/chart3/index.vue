@@ -15,15 +15,15 @@
       </b-modal>
     </div>
     <div>
-      <vepie :data="piechartData1" :settings="piechartSettings1" :events="piechartEvents1"/>
+      <vepie :data="piechartData1" :settings="piechartSettings1" :events="piechartEvents1" />
     </div>
   </div>
 </template>
 
 <script>
 import vepie from 'v-charts/lib/pie.common'
-import BModal from 'bootstrap-vue/es/components/modal/modal'
-import BTable from 'bootstrap-vue/es/components/table/table'
+import BModal from 'bootstrap-vue'
+import BTable from 'bootstrap-vue'
 export default {
   components: { vepie, BModal, BTable },
   data() {

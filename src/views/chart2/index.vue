@@ -15,7 +15,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import BTable from 'bootstrap-vue/es/components/table/table'
+import BTable from 'bootstrap-vue'
 export default {
   components: { BTable },
   data() {

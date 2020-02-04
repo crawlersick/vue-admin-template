@@ -1,13 +1,44 @@
 <template>
-  <div class="navbar">
+  <div class="navbar11">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
     <breadcrumb class="breadcrumb-container" />
 
+    
+
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <!-- <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar"> -->
+          <el-badge :value="2" type="warning">
+          <el-button  icon="el-icon-bell" size="mini" type="primary"></el-button>
+          </el-badge>
+          
+        </div>
+        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+          <router-link to="/">
+            <el-dropdown-item>
+              Home
+            </el-dropdown-item>
+          </router-link>
+          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+            <el-dropdown-item>Github</el-dropdown-item>
+          </a>
+          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
+            <el-dropdown-item>Docs</el-dropdown-item>
+          </a>
+          <el-dropdown-item divided @click.native="logout">
+            <span style="display:block;">Log Out</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
+
+    <div class="right-menu">
+      <el-dropdown class="avatar-container" trigger="click">
+        <div class="avatar-wrapper">
+          <!-- <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar"> -->
+          <i class="el-icon-user"></i>
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -28,6 +59,8 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+
+    
   </div>
 </template>
 
@@ -60,7 +93,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navbar {
+.itembadge {
+  margin-top: 0px;
+  margin-right: 0px;
+}
+.navbar11 {
   height: 50px;
   overflow: hidden;
   position: relative;
