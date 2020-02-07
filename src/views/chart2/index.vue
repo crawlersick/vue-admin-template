@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BTable from 'bootstrap-vue'
 export default {
-  components: { BTable },
+  components: {  },
   data() {
     return {
       transProps: {

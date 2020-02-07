@@ -25,7 +25,7 @@ import vepie from 'v-charts/lib/pie.common'
 import BModal from 'bootstrap-vue'
 import BTable from 'bootstrap-vue'
 export default {
-  components: { vepie, BModal, BTable },
+  components: { vepie },
   data() {
     var self = this
     this.piechartEvents1 = {
