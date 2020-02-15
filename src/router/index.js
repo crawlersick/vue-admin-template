@@ -80,6 +80,12 @@ export const constantRoutes = [
     meta: { title: 'mytesting', icon: 'example' },
     children: [
       {
+        path: 'data_manage',
+        name: 'data_manage',
+        component: () => import('@/views/data_manage/index'),
+        meta: { title: 'data_manage', icon: 'table' }
+      },
+      {
         path: 'chart1',
         name: 'chart1',
         component: () => import('@/views/chart1/index'),
