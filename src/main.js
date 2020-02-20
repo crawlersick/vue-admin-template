@@ -16,6 +16,9 @@ import '@/icons' // icon
 import '@/permission_def'
 // import '@/permission' // permission control
 
+import global_ from '../config/global.js'
+Vue.prototype.GLOBAL=global_
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
