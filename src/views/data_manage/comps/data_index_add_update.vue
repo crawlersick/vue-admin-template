@@ -1,7 +1,7 @@
 <template>
     <div>
-        <el-dialog title="add/update" :visible.sync="dialogFormVisible">
-        <el-form :model="form" :rules="rules" ref="my_add_update_form">
+        <el-dialog title="add/update" :visible.sync="dialogFormVisible" >
+        <el-form :model="form" :rules="rules" ref="my_add_update_form" v-loading="logdata_loading">
 
             <el-form-item label="数据级别" :label-width="formLabelWidth" prop="data_level">
             <el-select v-model="form.data_level" placeholder="请选择数据级别">
@@ -42,8 +42,8 @@
             </el-form-item>
 
         </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <div slot="footer" class="dialog-footer"  v-loading="logdata_loading">
+            <el-button @click="concelclick">取 消</el-button>
             <el-button type="primary" @click="confirmclick">确 定</el-button>
         </div>
         </el-dialog>
@@ -77,7 +77,15 @@ export default {
             this.inputValue = '';
         },
 
+        concelclick(){
+            this.dialogFormVisible = false
+            this.logdata_loading = false
+            this.$emit('set_table_loading',false)
+            
+        },
+
         confirmclick(){
+            
             if(this.dynamicTags.length  != 0 && this.dynamicTags.length<2){
                 Message.info('状态列表标签应该大于1,或为空')
                 return 
@@ -85,6 +93,7 @@ export default {
             this.$refs.my_add_update_form.validate(
                 (valid) => {
                     if(valid){
+                        this.logdata_loading=true
                         console.log(this.form)
                         var postdata={}
                         postdata.dataitem={}
@@ -104,6 +113,7 @@ export default {
                         {
 
                             console.log('--- request to add  ---')
+                            this.$emit('set_table_loading',true)
                             add_data_index(postdata, this.add_update_callbackmethod)
                         }
                         if(this.actiontype=='update')
@@ -111,6 +121,7 @@ export default {
                             
                             console.log('--- request to update  ---')
                             postdata.dataitem.index_id=this.index_id_for_update
+                            this.$emit('set_table_loading',true)
                             add_data_index(postdata, this.add_update_callbackmethod)
                         }
 
@@ -119,6 +130,7 @@ export default {
             )
         },
         add_update_callbackmethod(data){
+            this.logdata_loading=false
             console.log('>>>>>>>>>>>>>>>>>>>>this is add_update_callbackmethod')
             console.log(data)
 
@@ -139,6 +151,7 @@ export default {
             }else{
                 Message.error('未知错误： '+data.response)
             }
+            
             
         },
 
@@ -174,6 +187,7 @@ export default {
     },
     data() {
         return {
+            logdata_loading:false,
             index_id_for_update:'',
             actiontype:'',
             rules: {

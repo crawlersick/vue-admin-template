@@ -7,11 +7,11 @@
 
   <div>
     <div style="margin-left:10px">
-    <dataindexaddupdate ref="dataindexaddupdate" @refresh_index_data="refresh_index_data">
+    <dataindexaddupdate ref="dataindexaddupdate" @refresh_index_data="refresh_index_data" @set_table_loading="set_table_loading">
     </dataindexaddupdate>
     </div>
     <div style="margin-top:10px">
-    <el-table  border :data="tabledata" style="width: 100%;">
+    <el-table  border :data="tabledata" style="width: 100%;" v-loading="data_loading">
       <template v-for="colConfig in colConfigs"  >
   
         <template v-if="colConfig.slot==='name'">
@@ -49,9 +49,15 @@ import { Message } from 'element-ui'
 import dataindexaddupdate from '@/views/data_manage/comps/data_index_add_update'
 
 export default {
+  data() {  
+    return {
+      data_loading:true
+    }
+  },
   components:{dataindexaddupdate},
   props: ['colConfigs', 'tabledata'],
   methods:{
+      set_table_loading(v){this.data_loading=v},
       delete_callbackmethod(data){
         console.log(' ----------- this is delete_callbackmethod in data_index_table --------------')
         console.log(data)
@@ -59,12 +65,14 @@ export default {
       },
       refresh_index_data(){this.$emit('refresh_index_data')},
       editfunc(data){
+          //this.set_table_loading(true)
           console.log('this is editfunc func in data_index_table')
           console.log(data)
           this.$refs.dataindexaddupdate.updateitem(data)
           //this.$emit('upperfeedback',data)
       },
       deletefunc(data){
+          this.set_table_loading(true)
           console.log('this is deletefunc func in data_index_table')
           console.log(data)
           var postdata={}

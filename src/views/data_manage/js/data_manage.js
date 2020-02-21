@@ -105,3 +105,24 @@ export function data_manage_get_data_update_log(postdata,callbackmethod){
         }
     )
 }
+
+export function data_manage_get_data_content_list(postdata,callbackmethod){
+    request(
+        {
+            method:'post',
+            data: postdata,
+            url:global_util.BASE + global_util.backendstring + '/data_manage_get_data_content_list'
+
+        }
+    ).then(
+        (resp)=>{
+            callbackmethod(resp.data)
+        }
+    ).catch(
+        (err) => {
+            Message.error('error in backend request data_manage_get_data_content_list')
+            console.log(err)
+        }
+    )
+}
+

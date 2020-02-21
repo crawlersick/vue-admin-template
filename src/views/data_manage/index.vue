@@ -1,5 +1,12 @@
 <template>
   <div>
+
+    <div>
+      <el-divider content-position="left">状态数据查询</el-divider>
+      <dataquery :level_list="level_list">
+      </dataquery>
+    </div>
+
     <div>
       <el-divider content-position="left">状态数据配置</el-divider>
       <setdatacontent :level_list="level_list">
@@ -9,13 +16,14 @@
     <div>
 
       <el-divider content-position="left">数据字段动态配置</el-divider>
-      <dataindextable :tabledata="indexdata" :colConfigs="indexcol" @upperfeedback="dataindextable_feedback" @refresh_index_data="data_manage_get_index_data">
+      <dataindextable ref="mydatatable" :tabledata="indexdata" :colConfigs="indexcol" @upperfeedback="dataindextable_feedback" @refresh_index_data="data_manage_get_index_data">
       </dataindextable>
 
     </div>
   </div>
 </template>
 <script>
+import dataquery from '@/views/data_manage/comps/data_query'
 import dataindextable from '@/views/data_manage/comps/data_index_table'
 import setdatacontent from '@/views/data_manage/comps/set_data_content'
 import {request} from '@/utils/httpaxios.js'
@@ -23,8 +31,8 @@ import {data_manage_get_dst_col} from '@/views/data_manage/js/data_manage'
 
 export default {
   created(){
-    data_manage_get_dst_col('index_level',this.callback_data_manage_get_dst_col)
-
+    
+    
     this.data_manage_get_index_data()
 
 
@@ -40,17 +48,20 @@ export default {
       
     },
     data_manage_get_index_data(){
+      
+      data_manage_get_dst_col('index_level',this.callback_data_manage_get_dst_col)
       request(
         {
           method:'post',
           data: {'dummykey':'dummyvalue'},
-          url:this.GLOBAL.util.BASE + '/data_manage_get_index_data'
+          url:this.GLOBAL.util.BASE + this.GLOBAL.util.backendstring  + '/data_manage_get_index_data'
         }
         ).then(
           resp => {
             console.log('-- init request for data_manage_get_index_data --')
             console.log(resp)
             this.indexdata=resp.data.index_data
+            this.$refs.mydatatable.set_table_loading(false)
           }
         ).catch(
           err => {
@@ -67,7 +78,8 @@ export default {
   },
   components:{
     dataindextable,
-    setdatacontent
+    setdatacontent,
+    dataquery
     },
   data() {
     return {

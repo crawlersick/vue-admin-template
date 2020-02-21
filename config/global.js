@@ -3,7 +3,7 @@ let util={}
 var env=window.location.href
 if(env.includes('github'))
 {
-    console.log('running in prod github io')
+    console.log('running in -prod- github io')
     myaddress='apiv1.n2r.online'
 
     util.BASE=location.protocol + '//' + myaddress

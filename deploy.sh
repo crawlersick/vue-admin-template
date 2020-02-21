@@ -1,3 +1,4 @@
+rm -rf dist
 npm run build:prod
 cd dist
 git init

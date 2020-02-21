@@ -16,7 +16,7 @@
             </el-table>
         </el-drawer>
 
-        <el-form :inline="true" :model="form" :rules="rules" ref="my_data_form">
+        <el-form :inline="true" :model="form" :rules="rules" ref="my_data_form" v-loading="myformloading">
             
             <el-form-item label="数据级别" :label-width="formLabelWidth" prop="data_level">
             <el-select v-model="form.data_level" placeholder="请选择数据级别" @change="select_level">
@@ -110,6 +110,7 @@ export default {
         data_manage_get_data_update_log({"dummy":"dummy"},this.callback_data_manage_get_data_update_log)
     },
     callback_data_manage_set_data_content(data){
+        this.myformloading=false
         console.log('------------callback_data_manage_set_data_content----------------')
         console.log(data)
         if(data.response=="update done"){
@@ -166,6 +167,7 @@ export default {
                       itemlist.push(postitem)
                   }
                   console.log(itemlist)
+                  this.myformloading=true
                   data_manage_set_data_content(itemlist,this.form.data_level,
                   this.form.data_name,
                   this.callback_data_manage_set_data_content)
@@ -192,12 +194,13 @@ export default {
       console.log('---------this is select_level in set_data_content --------------')
       console.log(data)
       this.form.data_name=null
+      this.myformloading=true
       data_manage_get_col_lv2(data,this.callback_data_manage_get_col_lv2)
       
 
     },
     callback_data_manage_get_col_lv2(data){
-
+      this.myformloading=false
       console.log('---------this is callback_data_manage_get_col_lv2 --------------')
       console.log(data)
       this.data_list=data.namelist
@@ -210,6 +213,7 @@ export default {
   }, 
   data() {  
     return {
+      myformloading:false,
       logdata_loading:true,
       logdata:[],
       showlog:false,
